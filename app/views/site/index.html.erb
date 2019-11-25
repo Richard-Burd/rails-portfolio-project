@@ -1,0 +1,18 @@
+<i style="color:green">site#index - find me in: app/views/site/index.html.erb</i>
+<br>
+<h2>Welcome to Richard Burd's Boilerplate Rails App</h2>
+<p>This program was created from material in the Flatiron School cirriculum</p>
+<p>The objective of this program is to log users in with the following:</p>
+<ul>
+  <li> A unique username </li>
+  <li> A unique email address </li>
+  <li> An encrypted password </li>
+  <li> The option to signin with GitHub (OmniAuth) </li>
+</ul>
+<p>Please sign up or login to use the program</p>
+
+
+<ul>
+  <li><%= link_to "Signup as a new user", new_user_path %></li>
+  <li><%= link_to "Login as an existing user", login_path %></li>
+</ul>

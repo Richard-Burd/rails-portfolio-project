@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- The default layout is here: -->
+  <!-- app/views/layouts/application.html.erb -->
+  <!-- this layout is specific to the convoy app -->
+  <head>
+    <title>BlogFlash</title>
+    <!-- without the csrf tag you will get authenticity errors -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- this is used to generate the error messages on the login page -->
+    <!-- app/views/sessions/new.html.erb -->
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- this will utilize styles in: app/assets/stylesheets/application.css -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+  <footer>
+    <center>
+      <%= link_to "Home", root_path %><br><br><%= link_to "Logout", logout_path %>
+    </center>
+  </footer>
+</html>

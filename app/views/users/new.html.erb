@@ -1,0 +1,42 @@
+<i style="color:green">users#new - find me in: app/views/users/new.html.erb</i>
+<br>
+<h1>Signup!</h1>
+
+<%= form_tag users_path do %>
+  <% if @user.errors.any? %>
+    <div style="color:red" id="error_explanation">
+      <h2>There were some errors:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- this is the only place in the whole convoy app where the following code is used: -->
+  <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- ..which is located in: app/views/layouts/burdlayout.html.erb -->
+  <!--
+    The instructions for the Rails portfolio project say that the fields withn the app:
+    "...should be enclosed within a fields_with_errors class" - and yet this is only
+    necessary if you use a "form_tag" ActionView helper method instead of a "form_for"
+    ActionView helper method; the latter are used for forms rendering an object model whereas
+    the former are used for forms rendering items without associated object models.
+
+    Although a User model exists in the project, I am using a form_tag here to demonstrate
+    usage of the "field_with_errors" class as shown in the Flatiron cirriculum here:
+    https://learn.co/tracks/full-stack-web-development-v8/module-13-rails/section-6-validations-and-forms/validations-with-form_tag
+    The "field_with_errors" division is defined in here: app/assets/stylesheets/users.scss
+    ...and although it is located inside the users.scss directory, all of the other forms
+    (for trips & vehicles) are somehow finding it.  If I put something here:
+    app/assets/stylesheets/trips.scss, it will not work so long as something in
+    app/assets/stylesheets/users.scss already exists.
+  -->
+  <div class="field<%= ' field_with_errors' if @user.errors.any? %>">
+    <%= text_field_tag "user[username]", nil, placeholder: "Choose a username" %><br>
+    <%= text_field_tag "user[email]", nil, placeholder: "Register with your email" %><br>
+    <%= text_field_tag "user[password]", nil, placeholder: "Choose a password" %><br>
+  </div>
+  <%= submit_tag %>
+<% end %>
