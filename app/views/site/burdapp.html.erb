@@ -1,11 +1,13 @@
 <i style="color:green">site#burdapp - find me in: app/views/site/burdapp.html.erb</i>
 <br>
-<h2>You are currently logged in as a user named <%= @user.username %></h2>
-<p>This program was created from material in the Flatiron School cirriculum</p>
-<p>The objective of this program is to log users in with the following:</p>
+<h2>Welcome to Expeditionary Convoy Planner</h2>
+<h3>You are currently logged in as a user named <%= @user.username %></h3>
+<p>This program will tell you if your next convoy has enough fuel or not</p>
+<p>Select from the menu below</p>
+
 <ul>
-  <li> A unique username </li>
-  <li> A unique email address </li>
-  <li> An encrypted password </li>
-  <li> The option to signin with GitHub (OmniAuth) </li>
+  <li><%= link_to "View all trips in the database", trips_path %></li>
+  <li><%= link_to "View your vehicles", user_vehicles_path(@user) %></li>
+  <li><%= link_to "Create a new trip", new_trip_path %></li>
+  <li><%= link_to "Create a new vehicle", new_user_vehicle_path(@user) %></li>
 </ul>

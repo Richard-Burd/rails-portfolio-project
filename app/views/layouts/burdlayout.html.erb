@@ -3,7 +3,7 @@
 
   <!-- The default layout is here: -->
   <!-- app/views/layouts/application.html.erb -->
-  <!-- this layout is specific to the convoy app -->
+  <!-- this layout is specific to the burdapp -->
   <head>
     <title>BlogFlash</title>
     <!-- without the csrf tag you will get authenticity errors -->
@@ -23,7 +23,10 @@
   </body>
   <footer>
     <center>
-      <%= link_to "Home", root_path %><br><br><%= link_to "Logout", logout_path %>
+      <%= link_to "Home", root_path %><br><br>
+      <% if current_user %>
+        <%= link_to "Logout", logout_path %>
+      <% end %>
     </center>
   </footer>
 </html>
