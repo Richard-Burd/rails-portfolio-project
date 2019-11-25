@@ -9,23 +9,23 @@ class VehiclesController < ApplicationController
   before_action :authentication_required
 
   def index
-    render :plain => "This is where you will see all the vehicles"
+    # render :plain => "This is where you will see all the vehicles"
   end
 
   def show
-    render :plain => "This is where you will see a vehicle"
+    # render :plain => "This is where you will see a vehicle"
   end
 
   def new
-    render :plain => "This is where you will view a new vehicle form"
+    # render :plain => "This is where you will view a new vehicle form"
   end
 
   def create
-    render :plain => "This is where you will create a vehicle"
+    # render :plain => "This is where you will create a vehicle"
   end
 
   def edit
-    render :plain => "This is where you will edit vehicles"
+    # render :plain => "This is where you will edit vehicles"
   end
 
   def update

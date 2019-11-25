@@ -8,23 +8,23 @@ class TripsController < ApplicationController
   before_action :authentication_required
 
   def index
-    render :plain => "This is where you will see all the trips"
+    # render :plain => "This is where you will see all the trips"
   end
 
   def show
-    render :plain => "This is where you will see a trip"
+    # render :plain => "This is where you will see a trip"
   end
 
   def new
-    render :plain => "This is where you will view a new trip form"
+    # render :plain => "This is where you will view a new trip form"
   end
 
   def create
-    render :plain => "This is where you will create a trip"
+    # render :plain => "This is where you will create a trip"
   end
 
   def edit
-    render :plain => "This is where you will edit trips"
+    # render :plain => "This is where you will edit trips"
   end
 
   def update
