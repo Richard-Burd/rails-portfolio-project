@@ -33,9 +33,13 @@
     app/assets/stylesheets/trips.scss, it will not work so long as something in
     app/assets/stylesheets/users.scss already exists.
   -->
-  <div class="field<%= ' field_with_errors' if @user.errors.any? %>">
+  <div class="field<%= ' field_with_errors' if @user.errors[:username].any? %>">
     <%= text_field_tag "user[username]", nil, placeholder: "Choose a username" %><br>
+  </div>
+  <div class="field<%= ' field_with_errors' if @user.errors[:email].any? %>">
     <%= text_field_tag "user[email]", nil, placeholder: "Register with your email" %><br>
+  </div>
+  <div class="field<%= ' field_with_errors' if @user.errors[:password].any? %>">
     <%= text_field_tag "user[password]", nil, placeholder: "Choose a password" %><br>
   </div>
   <%= submit_tag %>
