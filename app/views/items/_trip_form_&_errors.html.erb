@@ -1,0 +1,35 @@
+<% if @trip.errors.any? %>
+  <div style="color:red" id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @trip do |f| %>
+  <%= f.label 'New Name of Trip:' %>
+  <%= f.text_field :name %>
+    <br>
+  <%= f.label 'Start Location:' %>
+  <%= f.text_field :start_location %>
+    <br>
+  <%= f.label 'Finish Location:' %>
+  <%= f.text_field :finish_location %>
+    <br><br><br><br><br>
+    <p><h3>Select the routs legs that make up this trip:</h3></p>
+  <%= f.collection_check_boxes :leg_ids, Leg.all, :id, :description %>
+    <br><br><br><br><br><br><br>
+    <p><h3>Select the vehicles that are going on this trip's convoy:</h3></p>
+  <%= f.collection_check_boxes :vehicle_ids, Vehicle.all, :id, :name %>
+    <br><br><br><br><br>
+  <%= f.label 'Total Fuel Consumed on Trip:' %>
+  <%= f.text_field :total_fuel_actually_consumed %>
+    <br>
+  <%= f.label 'Convoy Log:' %>
+  <%= f.text_field :convoy_log %>
+    <br><br>
+  <%= f.submit "Submit" %>
+<% end %>
