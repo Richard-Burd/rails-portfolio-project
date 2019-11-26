@@ -1,5 +1,4 @@
 <i style="color:green">trips#index: find me in: app/views/trips/index.html.erb</i>
-<p>trips#index: find me in app/views/trips/index.html.erb</p>
 <br>
 <h2>All Trips on Expeditionary Convoy Planner</h2>
 <p>Please select the trip you would like to view or edit.  You may only edit a trip if your vehicle is registered on the trip's convoy</p>
@@ -9,7 +8,8 @@
     <li>
       <%= link_to trip.name, trip_path(trip) %>
       total distance: <%= trip.total_adjusted_distance.floor %> miles
-      <%= link_to "Delete", trip, method: :delete, data: { confirm: "Really?" } %>
+      <br><%= render "items/alter_convoy", :@trip => trip %><br><br><br>
+
     </li>
   <% end %>
 </ul>

@@ -1,1 +1,21 @@
 <i style="color:green">vehicles#show - find me in: app/views/vehicles/show.html.erb</i>
+<p>vehicles#show - Find me in: app/views/vehicles/show.html.erb</p>
+<% @vehicle = Vehicle.find(params[:id]) %>
+<h1><center><%= @vehicle.name %></center></h1>
+
+<p>Belongs to: <%= link_to @user.username, user_vehicles_path(@user) %></p>
+  <% if @vehicle.trip != nil %>
+    <p>Designated to go on this trip: <%= link_to @vehicle.trip.name, trip_path(@vehicle.trip_id) %></P>
+  <% else %>
+    <p>This vehicle is not scheduled for any <%= link_to "trips", trips_path %>.</p>
+  <% end %>
+
+<p>Gets <%= @vehicle.miles_per_gallon %> miles per gallon</p>
+<p>Is currently loaded with <%= @vehicle.fuel_on_vehicle %> gallons of fuel</p>
+
+<!-- A user can only edit or delete a vehicle if the vehicle belongs to them -->
+<% if @user.id == current_user.id %>
+  <button><%= link_to "Edit Vehicle", edit_user_vehicle_path(@user) %></button>
+    <br><br>
+  <button><%= link_to "Delete Vehicle", user_vehicle_url, method: :delete, data: { confirm: "Really?" } %></button>
+<% end %>

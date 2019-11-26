@@ -1,0 +1,6 @@
+<!-- A user can only edit or delete a trip if the trip has a vehicle that is owned by the user -->
+<% if @trip.vehicles.where(user_id: current_user.id).exists? == true %>
+  <button><%= link_to "Edit Trip", edit_trip_path(@trip) %></button>
+    <br><br>
+  <button><%= link_to "Delete Trip", @trip, method: :delete, data: { confirm: "Really?" } %></button>
+<% end %>

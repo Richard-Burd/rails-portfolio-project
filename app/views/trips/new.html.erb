@@ -1,1 +1,35 @@
 <i style="color:green">trips#new: find me in: app/views/trips/new.html.erb</i>
+<br>
+<% @trip = Trip.find(params[:id]) %>
+<h1><center><%= @trip.name %></center></h1>
+<h3>These are the vehicles slated to go on the trip</h3>
+<ul>
+<%= render "items/display_convoy_info" %>
+<p>
+  <b>Start Location:</b><%= @trip.start_location %><br>
+  <b>Finish Location:</b><%= @trip.finish_location %><br>
+</p>
+<br>
+<br>
+<h3><center>This trip is made up of the following legs:</center></h3>
+<% @trip.legs.each do |leg| %>
+  <li><b><%= leg.description %></b></li>
+  <ul>
+    <li><%= leg.adjusted_distance.floor %> miles</li>
+    <li><%= leg.terrain.split('_').map(&:capitalize).join(' ') %></li>
+    <li><%= leg.altitude_change %> feet of elevation change</li>
+  </ul>
+<% end %>
+<br>
+<br>
+<%= render "items/alter_convoy" %>
+<br>
+<br>
+<% if @trip.total_fuel_actually_consumed != nil %>
+  <b><%= @trip.total_fuel_actually_consumed %></b> gallons of fuel were consumed on this trip
+<% end %>
+<br>
+<% if @trip.convoy_log != nil %>
+  <b>Convoy Log:</b> <%= @trip.convoy_log %>
+<% end %>
+<br><br><br>

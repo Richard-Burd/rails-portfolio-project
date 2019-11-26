@@ -1,1 +1,30 @@
 <i style="color:green">vehicles#new: find me in app/views/vehicles/new.html.erb</i>
+<p>vehicles#new: find me in app/views/vehicles/new.html.erb</p>
+<br>
+<h1>New Vehicle for <%= @user.username %></h1>
+
+<% if @vehicle.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @vehicle.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @vehicle, :url => user_vehicles_path do |f| %> <!-- user_vehicles_path is the POST path -->
+  <%= f.label 'Name of Vehicle:' %>
+  <%= f.text_field :name %>
+    <br><br>
+  <%= f.label 'Miles Per Gallon:' %>
+  <%= f.text_field :miles_per_gallon %>
+    <br><br>
+  <%= f.label 'Gallons of Fuel on Vehicle::' %>
+  <%= f.text_field :fuel_on_vehicle %>
+    <br><br>
+    <label>Select the trip this vehicle will be on:</label><br>
+    <%= select_tag "trip_id", options_from_collection_for_select(@trips, "id", "name") %><br>
+  <%= f.submit "Submit" %>
+<% end %>
