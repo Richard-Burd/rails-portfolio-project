@@ -3,8 +3,8 @@ class TripsController < ApplicationController
   # a user can only edit or delete a trip in which they own a car on.
   before_action :authentication_required #=> This is defined in the application controller because the application controller is an inheretance point
 
-  # this will specify to use the formatting in app/views/layouts/burdlayout.html.erb
-  layout "burdlayout"
+  # this will specify to use the formatting in app/views/layouts/convoyapp.html.erb
+  layout "convoyapp"
 
   def index
     # render :plain => "You should only see this if you're logged in"

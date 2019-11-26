@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
 
-  # this will specify to use the formatting in app/views/layouts/burdlayout.html.erb
-  layout "burdlayout"
+  # this will specify to use the formatting in app/views/layouts/convoyapp.html.erb
+  layout "convoyapp"
 
   def index
     # @user = User.find(params[:user_id])

@@ -5,7 +5,7 @@
 <!-- Models should use "form_for" -->
 <%= form_tag(sessions_path) do %>
 
-  <!-- This flash notice is enabled here: app/views/layouts/burdlayout.html.erb -->
+  <!-- This flash notice is enabled here: app/views/layouts/convoyapp.html.erb -->
   <% if flash[:notice] %>
     <div class="fields_with_errors"><h3 style="color:red;"><%= flash[:notice] %><h3></div>
   <% end %>

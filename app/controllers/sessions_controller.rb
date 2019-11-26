@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   # this has the "Home" and "Logout" links at the bottom of each pags
-  # and is located here: app/views/layouts/burdlayout.html.erb
-  layout "burdlayout"
+  # and is located here: app/views/layouts/convoyapp.html.erb
+  layout "convoyapp"
 
   def new
     @user = User.new

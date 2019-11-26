@@ -1,6 +1,6 @@
 require 'pry'
 class VehiclesController < ApplicationController
-  layout "burdlayout"
+  layout "convoyapp"
   before_action :authentication_required #=> This is defined in the application controller because the application controller is an inheretance point
 
   def index
