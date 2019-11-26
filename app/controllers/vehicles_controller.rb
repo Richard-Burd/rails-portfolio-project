@@ -1,38 +1,34 @@
 require 'pry'
 class VehiclesController < ApplicationController
+  # this has the "Home" and "Logout" links at the bottom of each pags
+  # and is located here: app/views/layouts/convoyapp.html.erb
   layout "convoyapp"
-  before_action :authentication_required #=> This is defined in the application controller because the application controller is an inheretance point
+
+  # the user must be "logged_in? = true" as defined in this inheretance point:
+  # app/controllers/application_controller.rb
+  before_action :authentication_required
 
   def index
-    # render :plain => "This is where a user's vehicles will be shown"
-
+    # NOTE: no verification happens here, if you URL hack, you will be
+    # able to view other user's vehicles
     @user = User.find(params[:user_id])
     @vehicles = Vehicle.all.where(user_id: params[:user_id])
     render template: 'vehicles/index'
-    # This is sorta copied from here:
-    # https://learn.co/tracks/full-stack-web-development-v8/module-13-rails/section-10-routes-and-resources/routing-and-nested-resources
-    # # app/controllers/posts_controller.rb
-    # but it's not working
-
-    #if params[:user_id]
-    #  @vehicles = User.find(params[:user_id]).vehicles
-    #else
-    #  @vehicles = Vehicle.all
-    #end
-
-    ############################ LEFT OFF HERE #################################
-    # @vehicles = Vehicle.all.where(user_id: current_user.id)
   end
 
   def show
-    # render :plain => "This is where an individual vehicle will be shown"
-    @user = User.find(params[:user_id])
-    @vehicle = Vehicle.find(params[:id])
-    # binding.pry
+    # First we must verify that the user owns the vehicle they with to see.
+    if current_user.id == params[:user_id].to_i
+      @user = User.find(params[:user_id])
+      @vehicle = Vehicle.find(params[:id])
+    else # If the user doesn't own this vehicle, they are sent to the homepage
+      render :plain => "Hey, you're trying to URL hack this app!"
+    end
   end
 
   def new
-    # render :plain => "This is where you will make a new vehicle"
+    # NOTE: no verification happens here, if you URL hack, you will be
+    # able to view a new vehicle form for another user!
     @trips = Trip.all
     @user = User.find(params[:user_id])
     @vehicle = Vehicle.new
@@ -40,26 +36,51 @@ class VehiclesController < ApplicationController
   #@authors = Author.all
   #@post = Post.new(post_params(:title, :content, :author_id))
   def create
-    @trips = Trip.all
-    # render :plain => "This is where a new vehicle will be saved to the database"
-    @user = User.find(params[:user_id])
+    # NOTE: no verification happens here, if you URL hack, you will be
+    # able to create a vehicle for another user!
+    @trips = Trip.all                   # stuff in the params this action must act on
+    @user = User.find(params[:user_id]) # stuff in the params this action must act on
     @vehicle = Vehicle.new(vehicle_params(:name, :miles_per_gallon, :fuel_on_vehicle, :trip_id))
     @vehicle.user_id = @user.id
+
+    # for whatever reason, it isn't carrying the trip_id over and I have to specify it here.
     @vehicle.trip_id = params[:trip_id]
-    # binding.pry
-    # raise params.inspect
-    if @vehicle.valid?
+    if @vehicle.valid? # e.g. it meets the validation requirements set in the object model
       @vehicle.save
-      # redirect_to root_path
       redirect_to user_vehicles_path
     else
-      render :new
+      render :new # this will render with the error messages
     end
   end
 
   def edit
-    render :plain => "This is where an existing vehicle will be edited"
-    # binding.pry
+    # First we must verify that the user owns the vehicle they wish to edit.
+    if current_user.id == params[:user_id].to_i
+      # If the user owns this vehicle, the following data will be provided:
+      @vehicle = Vehicle.find(params[:id])
+      @user = User.find(params[:user_id])
+      @trips = Trip.all
+    else # If the user doesn't own this vehicle, they are trying to URL hack.
+      render :plain => "Hey, stop trying to URL hack me!"
+    end
+  end
+
+  def update
+    @trips = Trip.all                     # stuff in the params this action must act on
+    @vehicle = Vehicle.find(params[:id])  # stuff in the params this action must act on
+    # The current user can only send a PATCH request if they own the vehicle
+    if current_user.id == params[:user_id].to_i
+      # upon verification the vehicle will update with the strong params:
+      @vehicle.update(vehicle_params(:name, :miles_per_gallon, :fuel_on_vehicle, :trip_id))
+      if @vehicle.valid? # e.g. it meets the validation requirements set in the object model
+        @vehicle.save
+        redirect_to user_vehicles_path
+      else
+        render :edit # this will render with the error messages
+      end
+    else
+      render :plain => "You do not belong here, but it's impressive that you URL hacked in this far!"
+    end
   end
 
   def destroy

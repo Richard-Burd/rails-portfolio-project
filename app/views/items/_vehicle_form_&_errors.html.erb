@@ -1,0 +1,25 @@
+<!-- This block of code generates both the new vehicle form and the edit vehicle form -->
+<!-- This block of code generates the code for error messages as well -->
+<% if @vehicle.errors.any? %>
+  <div style="color:red" id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @vehicle.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <%= vehicle_form.label 'Name of Vehicle:' %>
+  <%= vehicle_form.text_field :name %>
+    <br><br>
+  <%= vehicle_form.label 'Miles Per Gallon:' %>
+  <%= vehicle_form.text_field :miles_per_gallon %>
+    <br><br>
+  <%= vehicle_form.label 'Gallons of Fuel on Vehicle::' %>
+  <%= vehicle_form.text_field :fuel_on_vehicle %>
+    <br><br>
+    <label>Select the trip this vehicle will be on:</label><br>
+    <%= select_tag "trip_id", options_from_collection_for_select(@trips, "id", "name") %><br>
+  <%= vehicle_form.submit "Submit" %>

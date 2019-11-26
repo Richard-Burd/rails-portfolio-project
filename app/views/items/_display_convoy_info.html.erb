@@ -1,0 +1,19 @@
+<% if @trip.vehicles.count > 0 %>
+  <h3>These are the vehicles slated to go on the trip</h3>
+<% else %>
+  <h3>
+    <p>There are currently no vehicles assigned to this trip!</p>
+    <p>Only admin can remove it now!!</p>
+  </h3>
+<% end %>
+<h3>
+  <ul>
+   <% @trip.vehicles.each do |vehicle| %>
+     <li><%= vehicle.name %></li>
+   <% end %>
+  </ul>
+</h3>
+  <br><br><br><br>
+<b>Total (adjusted) distance of the trip is:</b><%= @trip.total_adjusted_distance.floor %> miles<br>
+<b>Total Fuel on Hand:</b><%= @trip.total_fuel_on_hand %> gallons<br>
+<b>Total Fuel Required for Trip:</b><%= @trip.total_fuel_req_for_trip.floor %> gallons<br>

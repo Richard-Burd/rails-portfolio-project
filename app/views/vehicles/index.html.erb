@@ -1,4 +1,6 @@
 <i style="color:green">vehicles#index - find me in: app/views/vehicles/index.html.erb</i>
+<h1><center>Vehicles owned by <%= @user.username %></center></h1>
+
 <ul>
   <% @vehicles.each do |vehicle| %>
     <li><%= link_to vehicle.name, user_vehicle_path(@user, vehicle) %></li>

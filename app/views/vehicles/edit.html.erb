@@ -1,28 +1,8 @@
 <i style="color:green">vehicles#edit - find me in: app/views/vehicles/edit.html.erb</i>
+
 <h1>Edit <%= @vehicle.name %></h1>
 
-<% if @vehicle.errors.any? %>
-  <div id="error_explanation">
-    <h2>There were some errors:</h2>
-    <ul>
-      <% @vehicle.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @vehicle, :url => user_vehicles_path do |f| %> <!-- user_vehicles_path is the POST path -->
-  <%= f.label 'Name of Vehicle:' %>
-  <%= f.text_field :name %>
-    <br><br>
-  <%= f.label 'Miles Per Gallon:' %>
-  <%= f.text_field :miles_per_gallon %>
-    <br><br>
-  <%= f.label 'Gallons of Fuel on Vehicle::' %>
-  <%= f.text_field :fuel_on_vehicle %>
-    <br><br>
-    <label>Select the trip this vehicle will be on:</label><br>
-    <%= select_tag "trip_id", options_from_collection_for_select(@trips, "id", "name") %><br>
-  <%= f.submit "Submit" %>
+<!-- see notes on : app/views/vehicles/new.html.erb for the line of code below -->
+<%= form_for @vehicle, :url => user_vehicle_path do |f| %>
+  <%= render "items/vehicle_form_&_errors", :vehicle_form => f %>
 <% end %>

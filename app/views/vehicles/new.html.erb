@@ -1,30 +1,15 @@
 <i style="color:green">vehicles#new: find me in app/views/vehicles/new.html.erb</i>
-<p>vehicles#new: find me in app/views/vehicles/new.html.erb</p>
 <br>
 <h1>New Vehicle for <%= @user.username %></h1>
 
-<% if @vehicle.errors.any? %>
-  <div id="error_explanation">
-    <h2>There were some errors:</h2>
-    <ul>
-      <% @vehicle.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @vehicle, :url => user_vehicles_path do |f| %> <!-- user_vehicles_path is the POST path -->
-  <%= f.label 'Name of Vehicle:' %>
-  <%= f.text_field :name %>
-    <br><br>
-  <%= f.label 'Miles Per Gallon:' %>
-  <%= f.text_field :miles_per_gallon %>
-    <br><br>
-  <%= f.label 'Gallons of Fuel on Vehicle::' %>
-  <%= f.text_field :fuel_on_vehicle %>
-    <br><br>
-    <label>Select the trip this vehicle will be on:</label><br>
-    <%= select_tag "trip_id", options_from_collection_for_select(@trips, "id", "name") %><br>
-  <%= f.submit "Submit" %>
+<!--
+Because we are working with nested routes, the paths for new & edit are non-standard.
+The user_vehicles_path shown below does not have a PATCH verb as evidenced from viewing
+$ rails routes in the console.  Therefore, the user_vehicles_path cannot be used in the
+edit form...instead...the edit form utilizes the "user_vehicle_path" instead.
+Additionally, the ":url =>" snippet must be used as shown below or the app will generate a
+TypeError in Vehicles#new.
+-->
+<%= form_for @vehicle, :url => user_vehicles_path do |f| %>
+  <%= render "items/vehicle_form_&_errors", :vehicle_form => f %>
 <% end %>
