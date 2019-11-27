@@ -23,7 +23,9 @@
   </body>
   <footer>
     <center>
+      <% if !current_page?(root_path) %>
       <%= link_to "Home", root_path %><br><br>
+      <% end %>
       <% if current_user %>
         <%= link_to "Logout", logout_path %>
       <% end %>

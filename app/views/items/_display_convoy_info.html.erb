@@ -17,3 +17,6 @@
 <b>Total (adjusted) distance of the trip is:</b><%= @trip.total_adjusted_distance.floor %> miles<br>
 <b>Total Fuel on Hand:</b><%= @trip.total_fuel_on_hand %> gallons<br>
 <b>Total Fuel Required for Trip:</b><%= @trip.total_fuel_req_for_trip.floor %> gallons<br>
+<% if @trip.total_fuel_on_hand < @trip.total_fuel_req_for_trip.floor %>
+  <t style="color:red">WARNING:</t><t> there isn't enough fuel to complete this trip!</t>
+<% end %>

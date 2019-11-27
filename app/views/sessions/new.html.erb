@@ -9,8 +9,8 @@
   <% if flash[:notice] %>
     <div class="fields_with_errors"><h3 style="color:red;"><%= flash[:notice] %><h3></div>
   <% end %>
-  <%= text_field_tag :email, '', :placeholder => "Login with your email" %>
-  <%= text_field_tag :password, '', :placeholder => "Login with your password" %>
+  <%= text_field_tag :email, '', :placeholder => "Login with your email" %><br>
+  <%= text_field_tag :password, '', :placeholder => "Login with your password" %><br>
   <%= submit_tag "login" %>
 <% end %>
 

@@ -1,4 +1,3 @@
-require 'pry'
 class VehiclesController < ApplicationController
   # this has the "Home" and "Logout" links at the bottom of each pags
   # and is located here: app/views/layouts/convoyapp.html.erb
@@ -17,12 +16,12 @@ class VehiclesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:user_id])
     # First we must verify that the user owns the vehicle they with to see.
     if current_user.id == params[:user_id].to_i
-      @user = User.find(params[:user_id])
       @vehicle = Vehicle.find(params[:id])
     else # If the user doesn't own this vehicle, they are sent to the homepage
-      render :plain => "Hey, you're trying to URL hack this app!"
+      render :plain => "Please see #{@user.username} for details on this vehicle"
     end
   end
 

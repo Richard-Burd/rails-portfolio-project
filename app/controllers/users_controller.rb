@@ -3,12 +3,6 @@ class UsersController < ApplicationController
   # and is located here: app/views/layouts/convoyapp.html.erb
   layout "convoyapp"
 
-  def vehicles_index
-    @user = User.find(params[:id])
-    @vehicles = Vehicle.all.where(id: user.id)
-    render template: 'vehicles/index'
-  end
-
   def new
     @user = User.new
   end
@@ -26,6 +20,5 @@ class UsersController < ApplicationController
     else
       render :new
     end
-
   end
 end
