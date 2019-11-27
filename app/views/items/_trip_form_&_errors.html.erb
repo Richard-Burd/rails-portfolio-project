@@ -20,10 +20,16 @@
   <%= f.text_field :finish_location %>
     <br><br><br><br><br>
     <p><h3>Select the routs legs that make up this trip:</h3></p>
-  <%= f.collection_check_boxes :leg_ids, Leg.all, :id, :description %>
+  <%= f.collection_check_boxes :leg_ids, Leg.all, :id, :description  do |b| %>
+    <%= b.check_box %>
+    <%= b.label %><br>
+  <% end %>
     <br><br><br><br><br><br><br>
     <p><h3>Select the vehicles that are going on this trip's convoy:</h3></p>
-  <%= f.collection_check_boxes :vehicle_ids, Vehicle.all, :id, :name %>
+  <%= f.collection_check_boxes :vehicle_ids, Vehicle.all, :id, :name do |b| %>
+    <%= b.check_box %>
+    <%= b.label %><br>
+  <% end %>
     <br><br><br><br><br>
   <%= f.label 'Total Fuel Consumed on Trip:' %>
   <%= f.text_field :total_fuel_actually_consumed %>

@@ -27,7 +27,7 @@ class User < ApplicationRecord
       if auth_hash["info"]["email"] == nil # that is, no email address is listed.
         # some GitHub users have their email set to private.  If that is the
         # case, the user's email address will be set to this value below:
-        user.email = "unknown: GitHub doesn't share this user's email"
+        user.email = "unknown because GitHub doesn't share your email"
       else # if the user's GitHub account has a public email address...
         # the user's email address in this app will be the same as their GitHub
         # email address.

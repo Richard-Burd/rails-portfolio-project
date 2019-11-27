@@ -42,5 +42,5 @@
   <div class="field<%= ' field_with_errors' if @user.errors[:password].any? %>">
     <%= text_field_tag "user[password]", nil, placeholder: "Choose a password" %><br>
   </div>
-  <%= submit_tag %>
+  <%= submit_tag "signup"%>
 <% end %>

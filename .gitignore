@@ -49,6 +49,5 @@ node_modules/
 
 # Ignore additional files & folders not germane to the Rails Portfolio Project
 config/initializers/omniauth.rb
-db/development.sqlite3
 /test/
 /spec/
