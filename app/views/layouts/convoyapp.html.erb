@@ -10,11 +10,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- this is used to generate the error messages on the login page -->
-    <!-- app/views/sessions/new.html.erb -->
+    <!-- this line of code is not used in this app because itt currently has no javascript -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- this will utilize styles in: app/assets/stylesheets/application.css -->
+    <!-- without this line of code, text fields incorrectly populated [or left blank] will not show up as red -->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
