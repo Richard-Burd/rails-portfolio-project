@@ -48,6 +48,6 @@ class Leg < ApplicationRecord
   # This is the distance you are traveling when factoring in elevation change
   # and terrain conditions
   def adjusted_distance
-    self.path_punishment + self.elevation_punishment.floor
+    self.path_punishment + self.elevation_punishment
   end
 end
