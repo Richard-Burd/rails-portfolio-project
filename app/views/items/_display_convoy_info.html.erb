@@ -9,7 +9,13 @@
 <h3>
   <ul>
    <% @trip.vehicles.each do |vehicle| %>
-     <li><%= vehicle.name %></li>
+     <li>
+       <% if vehicle.user == current_user %>
+         <%= link_to vehicle.name, user_vehicle_path(vehicle.user, vehicle) %> <font size="2" color="grey">owned by you</font>
+       <% else %>
+         <%= vehicle.name %> <font size="2" color="grey">owned by <%= vehicle.user.username %></font>
+       <% end %>
+     </li>
    <% end %>
   </ul>
 </h3>

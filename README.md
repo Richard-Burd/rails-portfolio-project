@@ -4,7 +4,7 @@
 ## Overview
 
 <p>This program is designed to tell you if your convoy has enough fuel for a long voyage or not.&nbsp  A convoy is basically a collection of vehicles traveling together, usually in a military or humanitarian capacity inside unsafe territory.&nbsp  This convoy here consists of about 8 United Nations (UN) vehicles carrying humanitarian aid into south-western Syria during the civil war in that country.</p>
-<a href="https://imgur.com/k2SHPSe"><img src="https://i.imgur.com/k2SHPSe.jpg" title="source: imgur.com" /></a>
+<img src="https://i.imgur.com/k2SHPSe.jpg" title="source: imgur.com" />
 <p>The convoy is being led by a gas-guzzling Armored Personnel Carrier (APC) proving protection against armed groups followed by 5 (somewhat) more fuel-efficient SUV's and then 2 gas-guzzling mid-sized cargo trucks in the rear.&nbsp  It can be assumed that such a convoy will not have gas stations available to stop at, and thus, will have to carry enough fuel to get in and out of the war zone safely.&nbsp  This means that certain trucks will carry gas canisters that will be used to re-fuel the other vehicles in the convoy.&nbsp  This program will tell you how much of that extra gas you will need to bring along in order to complete the trek by considering the following variables:</p>
 <ul>
 <li>The miles-per-gallon fuel consumption for each individual vehicle</li>
@@ -16,7 +16,7 @@
 ## Cool Graphics
 
 <p>An illustration of this work-space is available here that shows all of the major relationships between key elements of the program:<p/>
-<a href="https://imgur.com/xpuIrbJ"><img src="https://i.imgur.com/xpuIrbJ.jpg" title="source: imgur.com" /></a>
+<a href="https://imgur.com/s5Cd2Ar"><img src="https://i.imgur.com/s5Cd2Ar.jpg" title="source: imgur.com" /></a>
 <p>This illustration is in "map" orientation which means that the code is arranged by how it occurs within a <i>stack</i> rather than where it occurs within a particular <i>sequence</i> of code being executed.&nbsp That said, the sequencing of the 3 different different user login strategies are illustrated as shown in the bottom right-hand corner of the diagram, at the very bottom of the SYMBOL LEGEND.&nbsp  These 3 strategies are:</p>
 <ul>
 <li>A user can login in as a returning user.</li>

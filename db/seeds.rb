@@ -39,7 +39,7 @@ Vehicle.create!(name: "FAW semi-trailer truck", miles_per_gallon: 7, fuel_on_veh
 Leg.create!(description: "HWY N5 High Desert Run (West of Al-Abr)", distance: 123, altitude_change: 930, terrain: "paved_road", user_id: 2) # leg 5
 Leg.create!(description: "Al-Abr to UN Compound", distance: 18, altitude_change: 0, terrain: "off_road", user_id: 2) # leg 6
 
-Trip.create!(name: "Airport to Hadhramaut Supply", start_location: "Sana'a Int'l Airport", finish_location: "UN Compound at Al-Abr", total_fuel_actually_consumed: nil) # trip 3
+Trip.create!(name: "Airport to Hadhramaut Supply Depot", start_location: "Sana'a Int'l Airport", finish_location: "UN Compound at Al-Abr", total_fuel_actually_consumed: nil) # trip 3
 
 
 TripLeg.create!(trip_id: 3, leg_id: 3)

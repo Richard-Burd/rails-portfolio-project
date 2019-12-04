@@ -30,58 +30,16 @@ class Leg < ApplicationRecord
     (self.altitude_change / (self.distance * 5280.0))
   end
 
+  def graphed_function_1(x)
+    # 0*x**4 + 1.87*x**3 - 0*x**2 + 0.11*x
+    1.87*x**3 + 0.11*x
+  end
 
-  # This is a very un-dry method that mimics an exponential equation
-  # When the equation is developed, it will replace this placeholder method
+  def elevation_punishment
+    graphed_function_1(elevation_grade)
+  end
+
   def adjusted_distance
-    # A 1:1 slope will require tenfold the fuel of no slope at all
-    if elevation_grade >= 1.0
-      path_punishment * 10
-    elsif elevation_grade < 1 && elevation_grade > 0.90
-      path_punishment * 8
-    elsif elevation_grade < 0.90 && elevation_grade > 0.80
-      path_punishment * 5
-    elsif elevation_grade < 0.80 && elevation_grade > 0.70
-      path_punishment * 3.5
-    elsif elevation_grade < 0.70 && elevation_grade > 0.60
-      path_punishment * 2.9
-    elsif elevation_grade < 0.60 && elevation_grade > 0.50
-      path_punishment * 2.6
-    elsif elevation_grade < 0.50 && elevation_grade > 0.40
-      path_punishment * 2.3
-    elsif elevation_grade < 0.40 && elevation_grade > 0.30
-      path_punishment * 1.8
-    elsif elevation_grade < 0.30 && elevation_grade > 0.20
-      path_punishment * 1.5
-    elsif elevation_grade < 0.20 && elevation_grade > 0.10
-      path_punishment * 1.2
-    elsif elevation_grade < 0.10 && elevation_grade > 0.00
-      path_punishment * 1.06
-    # If there is a negative slope in the grade, there will be fuel savings!
-    elsif elevation_grade == -1
-      path_punishment / 10
-    elsif elevation_grade > -1 && elevation_grade < -0.90
-      path_punishment / 8
-    elsif elevation_grade > -0.90 && elevation_grade < -0.80
-      path_punishment / 5
-    elsif elevation_grade > -0.80 && elevation_grade < -0.70
-      path_punishment / 3.5
-    elsif elevation_grade > -0.70 && elevation_grade < -0.60
-      path_punishment / 2.9
-    elsif elevation_grade > -0.60 && elevation_grade < -0.50
-      path_punishment / 2.6
-    elsif elevation_grade > -0.50 && elevation_grade < -0.40
-      path_punishment / 2.3
-    elsif elevation_grade > -0.40 && elevation_grade < -0.30
-      path_punishment / 1.8
-    elsif elevation_grade > -0.30 && elevation_grade < -0.20
-      path_punishment / 1.5
-    elsif elevation_grade > -0.20 && elevation_grade < -0.10
-      path_punishment / 1.2
-    elsif elevation_grade > -0.10 && elevation_grade < -0.00
-      path_punishment / 1.06
-    else
-      path_punishment
-    end
+    self.path_punishment + self.elevation_punishment
   end
 end

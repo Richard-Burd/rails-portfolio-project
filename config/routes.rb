@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   # relevant to the app name itself.
   # The default root pathis reserved for what a user sees when they are
   # not yet logged in.
-  get '/burdapp' => "site#burdapp"
 
   # Routes specific to the convoy app:
   resources :trips #=> each convoy has a trip
