@@ -26,20 +26,28 @@ class Leg < ApplicationRecord
   end
 
   # This is the slope of the elevation gain or loss expressed as a decimal
+  # It is represented in the y axis below
   def elevation_grade
     (self.altitude_change / (self.distance * 5280.0))
   end
 
+  # This polyline function was developed on geogebra.org here:
+  # https://www.geogebra.org/m/wxsaesvw
   def graphed_function_1(x)
-    # 0*x**4 + 1.87*x**3 - 0*x**2 + 0.11*x
+    # the polynomial equation as copied from geogebra.org:
+    # f(x) = 0x4 + 1.87x3 - 0x2 + 0.11x
+    # simplified form:
     1.87*x**3 + 0.11*x
   end
 
+  # This will return a value for x [the slope] for different y [fuel] inputs
   def elevation_punishment
     graphed_function_1(elevation_grade)
   end
 
+  # This is the distance you are traveling when factoring in elevation change
+  # and terrain conditions
   def adjusted_distance
-    self.path_punishment + self.elevation_punishment
+    self.path_punishment + self.elevation_punishment.floor
   end
 end
