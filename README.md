@@ -16,7 +16,7 @@
 ## Cool Graphics
 
 <p>An illustration of this work-space is available here that shows all of the major relationships between key elements of the program:<p/>
-<a href="https://imgur.com/u88hTem"><img src="https://i.imgur.com/u88hTem.jpg" title="source: imgur.com" /></a>
+<a href="https://imgur.com/wPVZU0M"><img src="https://i.imgur.com/wPVZU0M.jpg" title="source: imgur.com" /></a>
 <p>This illustration is in "map" orientation which means that the code is arranged by how it occurs within a <i>stack</i> rather than where it occurs within a particular <i>sequence</i> of code being executed.&nbsp That said, the sequencing of the 3 different different user login strategies are illustrated as shown in the bottom right-hand corner of the diagram, at the very bottom of the SYMBOL LEGEND.&nbsp  These 3 strategies are:</p>
 <ul>
 <li>A user can login in as a returning user.</li>
