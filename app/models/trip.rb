@@ -29,9 +29,9 @@ class Trip < ApplicationRecord
   end
 
   # This is the total distance of the trip when adjusted for elevation gain
-  # (or loss) as well as road conditions.  A 12 mile flat stretch of paved off_road
+  # (or loss) as well as road conditions.  A 12 mile flat stretch of paved road
   # would equal 12 miles of distance.  A 12 mile uphill stretch of dirt road will
-  # be something greater than 12 miles. A 12 mile downhill stretch of paved off_road
+  # be something greater than 12 miles. A 12 mile downhill stretch of paved road
   # would be something less than 12 miles.
   def total_adjusted_distance
     total = []
