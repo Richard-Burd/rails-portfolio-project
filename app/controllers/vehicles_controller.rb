@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  # this has the "Home" and "Logout" links at the bottom of each pags
+  # this has the "Home" and "Logout" links at the bottom of each page
   # and is located here: app/views/layouts/convoyapp.html.erb
   layout "convoyapp"
 
