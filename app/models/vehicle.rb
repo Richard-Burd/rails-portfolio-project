@@ -5,4 +5,6 @@ class Vehicle < ApplicationRecord
   validates :name, presence: true
   validates_numericality_of :miles_per_gallon, greater_than: 0
   validates_numericality_of :fuel_on_vehicle, greater_than: 0
+
+  scope :highest_mpg, -> {order("miles_per_gallon DESC").first}
 end

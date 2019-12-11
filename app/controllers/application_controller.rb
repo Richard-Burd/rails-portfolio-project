@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     # message.
   end
 
+  def trip_mod_permitted?
+    Trip.find(params[:id]).vehicles.where(user_id: current_user.id).exists? == true
+  end
+
   # Methods you build in controllers do not permeate to the ActionView part of
   # your code... that is, you cannot call this in your html.erb unless you say
   # explicitly That this is a "helper_method"

@@ -31,16 +31,18 @@ Rails.application.routes.draw do
   # the users are not shown under routes specific to the convoy app
   # resources :users
 
-  # This is the default index for the app.  It should be renamed to s.thing
-  # relevant to the app name itself.
-  # The default root pathis reserved for what a user sees when they are
-  # not yet logged in.
-
-  # Routes specific to the convoy app:
   resources :trips #=> each convoy has a trip
 
   resources :users do
     resources :vehicles
   end
 
+  # for learning purposes only, the 'resources' will not be used here, instead
+  # each route will be spelled out literally so as to get it working.
+  # these are the routes for the Legs object...the Leg views are working at a
+  # lower level of abstraction that the Trips, Users, and Vehicels views are.
+  get '/legs' => "legs#index"
+  get '/legs/:id', to: 'legs#show'
+  get '/legs/:id/edit', to: 'legs#edit'
+  patch 'legs/:id', to: 'legs#update'
 end

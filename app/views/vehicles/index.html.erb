@@ -2,7 +2,28 @@
 <h1><center>Vehicles owned by <%= @user.username %></center></h1>
 
 <ul>
-  <% @vehicles.each do |vehicle| %>
+  <% @user.vehicles.each do |vehicle| %>
     <li><%= link_to vehicle.name, user_vehicle_path(@user, vehicle) %></li>
   <% end %>
 </ul>
+
+<!-- Below are two ways to accomplish the same thing, they are both included -->
+<!-- for illustration purposes so as to demonstrate two different possibilities -->
+
+<!-- using ActiveRecord directly to show the lowest MPG vehicle -->
+<p>
+  NOTE: the
+  <%= @user.vehicles.order("miles_per_gallon DESC").last.name %>
+  only gets
+  <%= @user.vehicles.minimum('miles_per_gallon') %>
+  miles per gallon and is your least efficient vehicle
+</p>
+
+<!-- using a Rails scope method in the Vehicle object model to show the highest MPG vehicle -->
+<p>
+  NOTE: the
+  <%= @highest_mpg.name %>
+  can get
+  <%= @highest_mpg.miles_per_gallon %>
+  miles per gallon and is your most efficient vehicle
+</p>

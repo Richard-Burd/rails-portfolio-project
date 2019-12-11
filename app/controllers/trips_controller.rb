@@ -18,7 +18,7 @@ class TripsController < ApplicationController
   def edit
     # First we must verify that the user owns a vehicle on the trip, otherwise
     # they have no business viewing the edit form for editing the trip.
-    if Trip.find(params[:id]).vehicles.where(user_id: current_user.id).exists? == true
+    if trip_mod_permitted?
       # Once the user is verified to have the correct permissions, they will get the
       # necessary data to render the page:
       @legs = Leg.all
@@ -32,7 +32,7 @@ class TripsController < ApplicationController
   def update
     # First we must verify that the user owns a vehicle on the trip, otherwise they have
     # no business sending a PATCH request to edit the trip.
-    if Trip.find(params[:id]).vehicles.where(user_id: current_user.id).exists? == true
+    if trip_mod_permitted?
       @vehicles = Vehicle.all
       @trip = Trip.find(params[:id])
       @trip.update(trip_params)
@@ -66,10 +66,9 @@ class TripsController < ApplicationController
     end
   end
 
-  # https://learn.co/tracks/full-stack-web-development-v8/module-13-rails/section-6-validations-and-forms/delete-forms
   def destroy
     @trip = Trip.find(params[:id])
-    if @trip.vehicles.where(user_id: current_user.id).exists? == true
+    if trip_mod_permitted?
       @trip.destroy
       redirect_to trips_path
     else

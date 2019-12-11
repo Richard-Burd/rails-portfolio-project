@@ -1,0 +1,11 @@
+<i style="color:green">legs#edit: find me in: app/views/legs/edit.html.erb</i>
+<br>
+<% @leg = Leg.find(params[:id]) %>
+  <h3><center><%= @leg.description %></center></h3>
+<form action="<%= "/legs/#{@leg.id}" %>" method="PATCH">
+  <label>New Leg Description:</label>
+  <input type="text" id="leg_description" name="leg[description]"><br>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Submit Leg">
+</form>

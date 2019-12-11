@@ -1,0 +1,16 @@
+<i style="color:green">legs#index: find me in: app/views/legs/index.html.erb</i>
+<br>
+<h2>All legs on Expeditionary Convoy Planner</h2>
+<p>Please select the leg you would like to view or edit.</p>
+
+<ul>
+  <% @legs.each do |leg| %>
+    <li>
+      <!-- lower level of abstraction that must be used when the less abstracted -->
+      <!-- 'get' statements are used in config/routes instead of the "resources" -->
+      <!-- statement which in turn can handle the following alternative: -->
+      <%# link_to leg.descriptoin, leg_path(leg) %>
+      <%= link_to leg.description, "/legs/#{leg.id}" %>
+    </li>
+  <% end %>
+</ul>

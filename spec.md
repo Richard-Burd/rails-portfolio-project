@@ -18,9 +18,9 @@ Specs:
 - [x] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
      <li class='util--hide'>A user must have a unique username & email address...vehicles must hav miles per gallon expressed as integers.</li><br>
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-     <li class='util--hide'>This requirement can be found in app/controllers/trips_controller.rb in the #edit action in the follwing code:
+     <li class='util--hide'>This requirement can be found in app/models/vehicle.rb and is used to find the current user's vehicle with the highest miles-per-gallon rating:
 ```ruby
-     if Trip.find(params[:id]).vehicles.where(user_id: current_user.id).exists? == true
+     scope :highest_mpg, -> {order("miles_per_gallon DESC").first}
 ```
 
 - [x] Include signup (how e.g. Devise)

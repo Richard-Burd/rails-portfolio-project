@@ -11,15 +11,24 @@
   </div>
 <% end %>
 
-  <%= vehicle_form.label 'Name of Vehicle:' %>
-  <%= vehicle_form.text_field :name %>
+<!--
+because the vehicle routes are nested inside the user routes, the archetypal
+<# form_for @vehicle do |f| #> cannot be used in this instance, as that will
+generate the following error: "...undefined method `vehicles_path'..."
+
+Instead, the "vehicle_form" object created by ActionView::Helpers::FormBuilder
+is used to generate the form as shown below:
+-->
+<% f = vehicle_form %>
+  <%= f.label 'Name of Vehicle:' %>
+  <%= f.text_field :name %>
     <br><br>
-  <%= vehicle_form.label 'Miles Per Gallon:' %>
-  <%= vehicle_form.text_field :miles_per_gallon %>
+  <%= f.label 'Miles Per Gallon:' %>
+  <%= f.text_field :miles_per_gallon %>
     <br><br>
-  <%= vehicle_form.label 'Gallons of Fuel on Vehicle::' %>
-  <%= vehicle_form.text_field :fuel_on_vehicle %>
+  <%= f.label 'Gallons of Fuel on Vehicle::' %>
+  <%= f.text_field :fuel_on_vehicle %>
     <br><br>
     <label>Select the trip this vehicle will be on:</label><br>
     <%= select_tag "trip_id", options_from_collection_for_select(@trips, "id", "name") %><br>
-  <%= vehicle_form.submit "Submit" %>
+  <%= f.submit "Submit" %>

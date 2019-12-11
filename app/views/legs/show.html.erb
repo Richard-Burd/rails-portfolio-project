@@ -1,0 +1,10 @@
+<i style="color:green">legs#show: find me in: app/views/legs/show.html.erb</i>
+<br>
+<% @leg = Leg.find(params[:id]) %>
+  <h3><center><%= @leg.description %></center></h3>
+  <p>The distance is <%= @leg.distance %> miles</p>
+  <p>The terrain is <%= @leg.terrain.humanize(capitalize: false) %></p>
+  <p>The altitude gain is <%= @leg.altitude_change %> feet</p>
+  <!-- see the notes at: ./app/views/legs/index.html.erb for details on this -->
+  <!-- lower abstraction level:   "/legs/#{@leg.id}/edit" --->
+  <button><%= link_to "Edit Leg", "/legs/#{@leg.id}/edit" %></button>
