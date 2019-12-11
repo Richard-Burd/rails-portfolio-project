@@ -41,8 +41,11 @@ Rails.application.routes.draw do
   # each route will be spelled out literally so as to get it working.
   # these are the routes for the Legs object...the Leg views are working at a
   # lower level of abstraction that the Trips, Users, and Vehicels views are.
+  get '/legs/new' => "legs#new"
   get '/legs' => "legs#index"
   get '/legs/:id', to: 'legs#show'
   get '/legs/:id/edit', to: 'legs#edit'
-  patch 'legs/:id', to: 'legs#update'
+  patch '/legs/:id', to: 'legs#update'
+  # the routes above could be simplified with the following abstraction:
+  # resources :legs, only: [:new, :index, :show, :edit, :update]
 end

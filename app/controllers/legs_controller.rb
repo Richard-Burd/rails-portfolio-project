@@ -8,7 +8,8 @@ class LegsController < ApplicationController
   layout "convoyapp"
 
   def new
-    render :plain => "This is where you will create a new leg"
+    # render :plain => "This is where you will create a new leg"
+    @leg = Leg.new
   end
 
   def index
@@ -26,7 +27,9 @@ class LegsController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    raise params.inspect # right now I can't even get this to fire because for
+    # some reason, I cannot get the edit form to route the user to this update action.
+    
     @leg.update(description: params[:leg][:description])
     if @leg.valid? # e.g. it meets the validation requirements set in the object model
       @leg.save
