@@ -1,29 +1,37 @@
 <i style="color:green">vehicles#index - find me in: app/views/vehicles/index.html.erb</i>
 <h1><center>Vehicles owned by <%= @user.username %></center></h1>
 
-<ul>
-  <% @user.vehicles.each do |vehicle| %>
-    <li><%= link_to vehicle.name, user_vehicle_path(@user, vehicle) %></li>
-  <% end %>
-</ul>
+<% if @user.vehicles.exists? %>
+  <ul>
+    <% @user.vehicles.each do |vehicle| %>
+      <li><%= link_to vehicle.name, user_vehicle_path(@user, vehicle) %></li>
+    <% end %>
+  </ul>
 
-<!-- Below are two ways to accomplish the same thing, they are both included -->
-<!-- for illustration purposes so as to demonstrate two different possibilities -->
+  <!-- Below are two ways to accomplish the same thing, they are both included -->
+  <!-- for illustration purposes so as to demonstrate two different possibilities -->
 
-<!-- using ActiveRecord directly to show the lowest MPG vehicle -->
-<p>
-  NOTE: the
-  <%= @user.vehicles.order("miles_per_gallon DESC").last.name %>
-  only gets
-  <%= @user.vehicles.minimum('miles_per_gallon') %>
-  miles per gallon and is your least efficient vehicle
-</p>
+  <!-- using ActiveRecord directly to show the lowest MPG vehicle -->
+  <p>
+    NOTE: the
+    <%= @user.vehicles.order("miles_per_gallon DESC").last.name %>
+    only gets
+    <%= @user.vehicles.minimum('miles_per_gallon') %>
+    miles per gallon and is your least efficient vehicle
+  </p>
 
-<!-- using a Rails scope method in the Vehicle object model to show the highest MPG vehicle -->
-<p>
-  NOTE: the
-  <%= @highest_mpg.name %>
-  can get
-  <%= @highest_mpg.miles_per_gallon %>
-  miles per gallon and is your most efficient vehicle
-</p>
+  <!-- using a Rails scope method in the Vehicle object model to show the highest MPG vehicle -->
+  <p>
+    NOTE: the
+    <%= @highest_mpg.name %>
+    can get
+    <%= @highest_mpg.miles_per_gallon %>
+    miles per gallon and is your most efficient vehicle
+  </p>
+
+<% else %>
+  <p>
+    You do not currently have any vehicles,
+    <%= link_to "create your first vehicle here", new_user_vehicle_path(@user) %>
+  </p>
+<% end %>
